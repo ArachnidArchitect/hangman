@@ -4,29 +4,41 @@
     box-sizing: border-box;
 }
 
+body{
+    height: 100vh;
+    background-color: whitesmoke;
+}
 main{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
-    justify-content: space-around;}
+    margin: 0 auto;
+    height: 85%;
+    width: 100vw;
+    justify-content: space-around;
+    padding: 2px;
+}
 
 .display{
     letter-spacing: 1.1em;
     font-size: 3em;
     text-align: center;
-    width: 80%;
+    width: fit-content;
 }
 .letters{
     display: flex;
-    width: 40%;
+    width: 100%;
     justify-content: center;
     flex-wrap: wrap;
+    padding: 0;
+
 }
 .letter{
-width: 3em;
+    width: 13.5%;
+    margin:3px;
+    border-radius: 2px;
+    border: 2px cyan solid;
 height: 3em;
-border-radius: 50%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -73,27 +85,30 @@ box-shadow:  20px 20px 60px #bebebe,
         padding-bottom: 5em;
     }
     .display{
-        font-size: 2em;
+        font-size: 1.5em;
         text-align: center;
-        width: 80%;
+        width: fit-content;
         margin: 0 auto;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: nowrap;
+        height: 20%;
         padding: 0;
     }
     .lifelines{
-        height: 4em;
+        height: 50%;
+        padding: 0;
+        display: flex;
+        align-items: center;
     }
     .letters {
       width: 100%;
       justify-content: center;
+      border-radius: 6px;
     }
     .letter{
         outline:none;
-        border: none;
-        width: 4em;
-height: 4em;
+
     }
   }

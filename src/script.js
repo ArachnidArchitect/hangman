@@ -10,6 +10,7 @@ async function getData() {
     hiddenWord = data[0]; // assuming the API returns an array with a single word
     wordArray = hiddenWord.split('');
     printDOM();
+    hangmanFrames();
   } catch (error) {
     alert('Error fetching data:', error);
   }
@@ -40,7 +41,6 @@ function printDOM() {
     }
   }
   displayDOM.innerText = userGuess.join('');
-  lives.innerText = livesLeft.join('');
 }
 
 letters.forEach(letter => {
@@ -64,9 +64,39 @@ letters.forEach(letter => {
         }
       } else {
         livesLeft.push('X');
-        lives.innerText = livesLeft.join('');
+        hangmanFrames();
       }
-      if (userGuess.join('') == hiddenWord) alert('Woohoo! you got it right')
-    }
+      if (userGuess.join('') == hiddenWord){
+    alert('Woohoo! you got it right'); init()
+      location.reload()
+    }}
   });
 });
+function hangmanFrames(){
+  switch (livesLeft.length) {
+    case 0:
+      lives.innerHTML = `<img src="./src/images/frame.png" alt="">`
+      break;
+      case 1:
+        lives.innerHTML = `<img src="./src/images/frame1.png" alt="">`
+        break;
+      case 2:
+        lives.innerHTML = `<img src="./src/images/frame2.png" alt="">`
+        break;
+      case 3:
+        lives.innerHTML = `<img src="./src/images/frame3.png" alt="">`
+        break;
+      case 4:
+        lives.innerHTML = `<img src="./src/images/frame4.png" alt="">`
+        break;
+      case 5:
+        lives.innerHTML = `<img src="./src/images/frame5.png" alt="">`
+        break;
+      case 6:
+        lives.innerHTML = `<img src="./src/images/frame6.png" alt="">`
+        break;
+  
+    default:
+      break;
+  }
+}
