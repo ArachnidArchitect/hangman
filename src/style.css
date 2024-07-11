@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+.crossed-out{
+    text-decoration: line-through;
+}
 
 body{
     height: 100vh;

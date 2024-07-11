@@ -3,8 +3,8 @@ let wordArray;
 let livesLeft = [];
 let userGuess = [];
 let body = document.querySelector('body')
-let reloadBtn = document.querySelector('.new-word')
-let hintBtn = document.querySelector('.hint')
+let reloadBtn = document.querySelectorAll('.new-word')
+let hintBtn = document.querySelectorAll('.hint')
 let highDOM = document.querySelector('.highest')
 let currDOM = document.querySelector('.current')
 let currStreak =  localStorage.getItem('currStreak') || 0;
@@ -57,6 +57,7 @@ function printDOM() {
 letters.forEach(letter => {
   letter.addEventListener("click", () => {
     letter.setAttribute('disabled', '');
+    letter.classList.add('crossed-out');
     if (livesLeft.length == 7) {
       alert("You lose!");
       alert(`you're word was: ${hiddenWord}`);
@@ -81,6 +82,7 @@ letters.forEach(letter => {
           alert("You lose!");
           alert(`you're word was: ${hiddenWord}`);
                   currStreak = 0;
+                  localStorage.setItem('currStreak', (currStreak))
         currDOM.innerHTML =   `<div class="sec current"><i class="fa-solid fa-fire"></i> Current:${currStreak}</div>`
         }
         hangmanFrames();
@@ -123,25 +125,31 @@ function hangmanFrames(){
       break;
   }
 }
-
-reloadBtn.addEventListener('click', ()=>{
-  location.reload();
-})
-hintBtn.addEventListener('click', ()=>{
-  let whatsleft = wordArray.filter(letter =>{
-    return letter !== '-';
+reloadBtn.forEach(button => {
+  button.addEventListener('click', ()=>{
+    location.reload();
   })
-  let randomNum = Math.round(Math.random() * whatsleft.length-1)
-  let randomVal = whatsleft[randomNum]
+});
+hintBtn.forEach(button => {
+  button.addEventListener('click', ()=>{
+    let whatsleft = wordArray.filter(letter =>{
+      return letter !== '-';
+    })
+    let randomNum = Math.ceil(Math.random() * whatsleft.length-1)
+    let randomVal = whatsleft[randomNum]
+    console.log(randomVal)
+    console.log(randomNum)
+  
+    letters.forEach(letter => {
+      if(letter.innerText == randomVal){
+        triggerEvent(letter, 'click')
+      }
+      
+    });
+  
+  })
+});
 
-  letters.forEach(letter => {
-    if(letter.innerText == randomVal){
-      triggerEvent(letter, 'click')
-    }
-    
-  });
-
-})
 function triggerEvent( elem, event ) {
   var clickEvent = new Event( event ); // Create the event.
   elem.dispatchEvent( clickEvent );    // Dispatch the event.
