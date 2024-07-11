@@ -2,6 +2,15 @@ let hiddenWord;
 let wordArray;
 let livesLeft = [];
 let userGuess = [];
+let body = document.querySelector('body')
+let reloadBtn = document.querySelector('.new-word')
+let hintBtn = document.querySelector('.hint')
+let highDOM = document.querySelector('.highest')
+let currDOM = document.querySelector('.current')
+let currStreak =  localStorage.getItem('currStreak') || 0;
+let highScore = localStorage.getItem('highScore') || 0;
+
+
 
 async function getData() {
   try {
@@ -41,6 +50,8 @@ function printDOM() {
     }
   }
   displayDOM.innerText = userGuess.join('');
+    highDOM.innerHTML = `  <div class="sec highest"><i class="fa-solid fa-trophy"></i> Highest:${highScore}</div>`
+  currDOM.innerHTML =   `<div class="sec current"><i class="fa-solid fa-fire"></i> Current:${currStreak}</div>`
 }
 
 letters.forEach(letter => {
@@ -61,14 +72,23 @@ letters.forEach(letter => {
           displayDOM.innerText = userGuess.join('')
           wordArray[index] = '-'
           findMe.pop()
+
+
         }
       } else {
         livesLeft.push('X');
+        if(livesLeft.length == 7){
+          alert("You lose!");
+          alert(`you're word was: ${hiddenWord}`);
+                  currStreak = 0;
+        currDOM.innerHTML =   `<div class="sec current"><i class="fa-solid fa-fire"></i> Current:${currStreak}</div>`
+        }
         hangmanFrames();
       }
       if (userGuess.join('') == hiddenWord){
-    alert('Woohoo! you got it right'); init()
-      location.reload()
+    alert('Woohoo! you got it right');
+    streakCounter()
+      
     }}
   });
 });
@@ -95,8 +115,46 @@ function hangmanFrames(){
       case 6:
         lives.innerHTML = `<img src="./src/images/frame6.png" alt="">`
         break;
+      case 7:
+        lives.innerHTML = `<h1>X(</h1>`
+        break;
   
     default:
       break;
   }
+}
+
+reloadBtn.addEventListener('click', ()=>{
+  location.reload();
+})
+hintBtn.addEventListener('click', ()=>{
+  let whatsleft = wordArray.filter(letter =>{
+    return letter !== '-';
+  })
+  let randomNum = Math.round(Math.random() * whatsleft.length-1)
+  let randomVal = whatsleft[randomNum]
+
+  letters.forEach(letter => {
+    if(letter.innerText == randomVal){
+      triggerEvent(letter, 'click')
+    }
+    
+  });
+
+})
+function triggerEvent( elem, event ) {
+  var clickEvent = new Event( event ); // Create the event.
+  elem.dispatchEvent( clickEvent );    // Dispatch the event.
+}
+function streakCounter(){
+  currStreak++
+
+  if(currStreak>highScore){
+    highScore = currStreak
+  }
+  localStorage.setItem('currStreak', (currStreak))
+  localStorage.setItem('highScore', (highScore))
+  highDOM.innerHTML = `  <div class="sec highest"><i class="fa-solid fa-trophy"></i> Highest:${highScore}</div>`
+  currDOM.innerHTML =   `<div class="sec current"><i class="fa-solid fa-fire"></i> Current:${currStreak}</div>`
+
 }

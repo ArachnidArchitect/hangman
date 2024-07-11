@@ -7,13 +7,11 @@
     <link rel="stylesheet" href="./src/style.css">
   </head>
   <body onload=" printDOM()">
-    <div class="alert">
-      <div class="alert-child">
-        <h1>WARNING</h1>
-        <p contenteditable="">THIS GAME CAN BE REALLY CHALLENGING</p>
-        <p>Click anywhere to continue...</p>
-      </div>
-    </div>
+
+<div class="score">
+  <div class="sec current"><i class="fa-solid fa-fire"></i> Current:0</div>
+  <div class="sec highest"><i class="fa-solid fa-trophy"></i> Highest:0</div>
+</div>
     <main>
       <!-- word is 'test' -->
       <div class="lifelines">
@@ -49,9 +47,50 @@
       <button class="letter">x</button>
       <button class="letter">y</button>
       <button class="letter">z</button>
+      <button class="hint"><i class="fa-regular fa-lightbulb"></i></button>
+      <button class="new-word"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+    </div>
+    <div class="mobile">
+      <div class="row">
+        <button class="letter">q</button>
+        <button class="letter">w</button>
+        <button class="letter">e</button>
+        <button class="letter">r</button>
+        <button class="letter">t</button>
+        <button class="letter">y</button>
+        <button class="letter">u</button>
+        <button class="letter">i</button>
+        <button class="letter">o</button>
+        <button class="letter">p</button>
+      </div>
+      <div class="row">
+        <button class="letter">a</button>
+        <button class="letter">s</button>
+        <button class="letter">d</button>
+        <button class="letter">f</button>
+        <button class="letter">g</button>
+        <button class="letter">h</button>
+        <button class="letter">j</button>
+        <button class="letter">k</button>
+        <button class="letter">l</button>
+      </div>
+      <div class="row">
+        <button class="hint"><i class="fa-regular fa-lightbulb"></i></button>
+        <button class="letter">z</button>
+        <button class="letter">x</button>
+        <button class="letter">c</button>
+        <button class="letter">v</button>
+        <button class="letter">b</button>
+        <button class="letter">n</button>
+        <button class="letter">m</button>
+        <button class="new-word"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+        
+      </div>
+      
     </div>
 </main>
 
 <script src="./src/script.js"></script>
+<script src="https://kit.fontawesome.com/eb25ce82bc.js" crossorigin="anonymous"></script>
   </body>
 </html>

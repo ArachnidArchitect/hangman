@@ -7,6 +7,8 @@
 body{
     height: 100vh;
     background-color: whitesmoke;
+    animation: incorrectAnimation .2s 8;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 main{
     display: flex;
@@ -21,7 +23,7 @@ main{
 
 .display{
     letter-spacing: 1.1em;
-    font-size: 3em;
+    font-size: 4cqi;
     text-align: center;
     width: fit-content;
 }
@@ -33,50 +35,27 @@ main{
     padding: 0;
 
 }
-.letter{
+.mobile{
+    display: none;
+}
+button{
     width: 13.5%;
     margin:3px;
     border-radius: 2px;
     border: 2px cyan solid;
 height: 3em;
 }
+.score{
+    display: flex;
+    width: 100vw;
+    justify-content: space-evenly;
+    padding: 1em;
+}
 
 @media only screen and (max-width: 600px) {
     .display img{
-        width: 30vw;
-    }
-    .alert{
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.215);
-        height: 100vh;
-        width: 100vw;
-        display:flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 1em;
-        background-color: #e0e0e0;
-        display: none;
-        
-    }
-    .alert-child{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 3em 1em 3em 1em;
-        background-color: rgba(0, 0, 0, 0.215);
-        width: 90vw;
-        font-size: 1.4em;
-
-        border-radius: 50px;
-background: #e0e0e0;
-box-shadow:  20px 20px 60px #bebebe,
-             -20px -20px 60px #ffffff;
-        
-    }
-    .alert-child > p{
-        padding-top: 2em;
+     width: 80%;
+     margin: 0 auto;
     }
     main{
         justify-content: flex-end;
@@ -102,13 +81,19 @@ box-shadow:  20px 20px 60px #bebebe,
         display: flex;
         align-items: center;
     }
-    .letters {
-      width: 100%;
-      justify-content: center;
-      border-radius: 6px;
+    .letters{
+        display: none;
     }
-    .letter{
-        outline:none;
-
-    }
+.mobile{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.mobile .row{
+    display: flex;
+    justify-content: space-evenly;
+}
+.row button{
+    width: auto-fit;
+}
   }
